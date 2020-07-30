@@ -1,5 +1,5 @@
-package double_linked_list;
-
+import double_linked_list.DoubleLinkedList;
+import double_linked_list.ListItem;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

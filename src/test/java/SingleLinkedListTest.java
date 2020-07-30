@@ -1,23 +1,25 @@
-package single_linked_list;
+import static single_linked_list.SingleLinkedList.*;
 
+import java.util.ArrayList;
 import org.junit.jupiter.api.Assertions;
+import single_linked_list.ListItem;
+import single_linked_list.SingleLinkedList;
 
 class SingleLinkedListTest {
 
   String[] testArray = new String[]{"A", "B", "C", "D", "E"};
+  String[] expectingArray = new String[]{"E", "D", "C", "B"};
 
   SingleLinkedList singleLinkedListTest = new SingleLinkedList();
+  SingleLinkedList singleLinkedListExpect = new SingleLinkedList();
+
   private ListItem listItem;
 
   @org.junit.jupiter.api.BeforeEach
   void setUp() {
-    ListItem temp = null;
 
-    for (String member : testArray) {
-      temp = new ListItem(member);
-      singleLinkedListTest.push(temp);
-    }
-    listItem = temp;
+    singleLinkedListTest = createLinkedList(testArray);
+    listItem = singleLinkedListTest.getTop();
 
     //--------------
 
@@ -46,6 +48,8 @@ class SingleLinkedListTest {
   @org.junit.jupiter.api.Test
   void removeLast() {
     singleLinkedListTest.removeLast();
+    ArrayList listTest = new ArrayList();
+
 
     System.out.println("\nAfter removeLast:\n");
 
@@ -55,15 +59,19 @@ class SingleLinkedListTest {
     if (item != null) {
       int countItem = 1;
       System.out.print(item.getData() + " ");
+      listTest.add(item.getData());
+
       do {
         item = item.getNext();
         countItem++;
         System.out.print(item.getData() + " ");
+        listTest.add(item.getData());
+
       } while (item.getNext() != null);
 
       System.out.println("\nК-во членов singleLinkedListTest: " + countItem);
 
-      Assertions.assertEquals(testArray.length - 1, countItem);
+      Assertions.assertArrayEquals(listTest.toArray(), expectingArray);
 
     }
   }

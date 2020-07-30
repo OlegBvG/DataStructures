@@ -4,6 +4,11 @@ public class SingleLinkedList
 {
     private ListItem top;
 
+    public ListItem getTop() {
+        return top;
+    }
+
+
     public void push(ListItem item)
     {
         if(top != null) {
@@ -45,5 +50,17 @@ public class SingleLinkedList
 
 //      item.setNext(null);
         }
+    }
+
+    public static SingleLinkedList createLinkedList(String[] array){
+        ListItem temp = null;
+        SingleLinkedList singleLinkedList = new SingleLinkedList();
+
+        for (String member : array) {
+            temp = new ListItem(member);
+            singleLinkedList.push(temp);
+        }
+
+        return singleLinkedList;
     }
 }
